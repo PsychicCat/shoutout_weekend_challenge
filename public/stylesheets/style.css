@@ -1,5 +1,7 @@
+body {
+  background-color: lightblue;
+}
 
-
-a {
-  color: lightblue;
+.btn {
+  margin: auto 20px;
 }

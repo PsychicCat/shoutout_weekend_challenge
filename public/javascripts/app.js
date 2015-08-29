@@ -26,12 +26,17 @@ $(document).ready(function(){
 
         var $nameh2 = $('<h2>');
         var $message = $('<p>');
-        var $prev = $('<button>').text('Previous').attr('id', 'prev');
-        var $next = $('<button>').text('Next').attr('id', 'next');
+        var $prev = $('<button>').text('Previous').attr('id', 'prev').attr('class', 'btn btn-primary');
+        var $next = $('<button>').text('Next').attr('id', 'next').attr('class', 'btn btn-primary');
 
         $message.text(obj.message);
         $nameh2.text(obj.name);
         $shoutout.append($nameh2).append($message).append($prev).append($next);
+        $nameh2.hide().delay(100).slideDown('fast');
+        $message.hide().delay(500).fadeIn(500);
+        $next.hide().delay(1000).show(200);
+        $prev.hide().delay(1000).show(200);
+
 
         return currentId;
 
