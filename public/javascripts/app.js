@@ -9,11 +9,11 @@ $(document).ready(function(){
         obj.forEach(function(elem){
             var $name = $('<div>').text(elem.name).attr('data-id', elem.id);
             if (elem.id == 1){
-                $name.attr('class', 'item active');
+                $name.attr('class', 'item active animated bounceIn name');
             } else {
-                $name.attr('class', 'item');
+                $name.attr('class', 'item animated bounceIn name');
             }
-            var $liMessage = $('<li>').text(elem.message);
+            var $liMessage = $('<li>').text(elem.message).attr('class', 'animated zoomIn message');
             $name.append($liMessage);
             $shoutouts.append($name);
         });
