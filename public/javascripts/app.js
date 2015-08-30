@@ -1,48 +1,25 @@
 $(document).ready(function(){
-    var $shoutout = $('#shoutout');
-    var id = 1;
-    getShoutout(id);
+    var $shoutouts = $('#shoutouts');
+    getShoutouts();
 
-    $shoutout.on('click', '#next',function(){
-        $(this).parent().empty();
-        if(currentId == 18){
-            getShoutout(1);
-        } else {
-            getShoutout(currentId + 1);
-        }
-    });
-
-    $shoutout.on('click', '#prev',function(){
-        $(this).parent().empty();
-        if(currentId == 1){
-            getShoutout(18);
-        } else {
-            getShoutout(currentId - 1);
-        }
-    });
+    $('.carousel').carousel();
 
     function displayShoutout(obj){
-        currentId = parseInt(obj.id);
 
-        var $nameh2 = $('<h2>');
-        var $message = $('<p>');
-        var $prev = $('<button>').text('Previous').attr('id', 'prev').attr('class', 'btn btn-primary');
-        var $next = $('<button>').text('Next').attr('id', 'next').attr('class', 'btn btn-primary');
-
-        $message.text(obj.message);
-        $nameh2.text(obj.name);
-        $shoutout.append($nameh2).append($message).append($prev).append($next);
-        $nameh2.hide().delay(100).slideDown('fast');
-        $message.hide().delay(500).fadeIn(500);
-        $next.hide().delay(1000).show(200);
-        $prev.hide().delay(1000).show(200);
-
-
-        return currentId;
-
+        obj.forEach(function(elem){
+            var $name = $('<div>').text(elem.name).attr('data-id', elem.id);
+            if (elem.id == 1){
+                $name.attr('class', 'item active');
+            } else {
+                $name.attr('class', 'item');
+            }
+            var $liMessage = $('<li>').text(elem.message);
+            $name.append($liMessage);
+            $shoutouts.append($name);
+        });
     }
 
-    function getShoutout(id){
+    function getShoutouts(id){
         $.ajax({
             type: 'GET',
             dataType: 'json',
@@ -51,7 +28,6 @@ $(document).ready(function(){
                 console.log('Ajax Complete!');
             },
             success: function(data){
-                console.log(data);
                 displayShoutout(data);
             },
             error: function(req, errorType, errorMessage){
