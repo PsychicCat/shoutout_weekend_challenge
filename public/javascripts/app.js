@@ -15,6 +15,13 @@ $(document).ready(function(){
             }
             var $liMessage = $('<li>').text(elem.message).attr('class', 'animated zoomIn message');
             $name.append($liMessage);
+            $name.on('click', function(){
+                $name.animate({
+                    color: "green",
+                    backgroundColor: "rgb( 20, 20, 20, 2 )"
+                });
+                $(this).toggle("explode");
+            });
             $shoutouts.append($name);
         });
     }
