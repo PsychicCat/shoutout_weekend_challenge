@@ -2,6 +2,10 @@ body {
   background-color: #1DA195;
 }
 
+hidden {
+  display: none;
+}
+
 li {
   list-style-type: none;
 }
